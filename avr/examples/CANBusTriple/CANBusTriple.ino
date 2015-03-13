@@ -3,6 +3,8 @@
 *  The Car Hacking Platform
 *  https://canb.us
 *  https://github.com/CANBus-Triple
+*
+*  Modified by ichraffsnicht to work with Fiat Grande Punto Abarth
 */
 
 #include <avr/wdt.h>
@@ -109,7 +111,7 @@ void setup(){
   // Setup CAN Busses
   CANBus1.begin();
   CANBus1.setClkPre(1);
-  CANBus1.baudConfig(cbt_settings.busCfg[0].baud);
+  CANBus1.baudConfig(500); //500kbps for Diagnostic Can
   CANBus1.setRxInt(true);
   CANBus1.bitModify(RXB0CTRL, 0x04, 0x04); // Set buffer rollover enabled
   CANBus1.bitModify(CNF2, 0x20, 0x20); // Enable wake-up filter
